@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlTable_PRODUCT_LINE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": "PRODUCT_LINE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
