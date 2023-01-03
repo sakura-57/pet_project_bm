@@ -1,9 +1,0 @@
-{
-	"name": "petprojectbm",
-	"location": "westeurope",
-	"identity": {
-		"type": "SystemAssigned",
-		"principalId": "5eee023a-5936-4ca9-9a33-805f2b92e4d8",
-		"tenantId": "b41b72d0-4e9f-4c26-8a69-f949f367c91d"
-	}
-}
