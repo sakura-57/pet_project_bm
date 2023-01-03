@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: BotaPCAgent
+  vmImage: 'windows-latest'
 
 steps:
 - task: CopyFiles@2
