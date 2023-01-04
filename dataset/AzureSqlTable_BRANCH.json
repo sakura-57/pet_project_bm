@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlTable_BRANCH",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": "BRANCH"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

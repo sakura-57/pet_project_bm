@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlTable_INVOICE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": "INVOICE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

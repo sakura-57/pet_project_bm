@@ -1,0 +1,9 @@
+{
+	"name": "petprojectmm",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0a5b8097-aaca-402f-9c69-d492ff441faf",
+		"tenantId": "eb76bbdf-ba5b-487c-9886-640e3e93b370"
+	}
+}

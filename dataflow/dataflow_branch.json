@@ -1,0 +1,106 @@
+{
+	"name": "dataflow_branch",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SupermarketSales",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable_BRANCH",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "aggregate2"
+				},
+				{
+					"name": "surrogateKey2"
+				},
+				{
+					"name": "lookup1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Invoice ID} as string,",
+				"          Branch as string,",
+				"          City as string,",
+				"          {Customer type} as string,",
+				"          Gender as string,",
+				"          {Product line} as string,",
+				"          {Unit price} as string,",
+				"          Quantity as string,",
+				"          {Tax 5%} as string,",
+				"          Total as string,",
+				"          Date as string,",
+				"          Time as string,",
+				"          Payment as string,",
+				"          cogs as string,",
+				"          {gross margin percentage} as string,",
+				"          {gross income} as string,",
+				"          Rating as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 aggregate(groupBy(Branch),",
+				"     Quantity = count(Quantity)) ~> aggregate1",
+				"aggregate1 keyGenerate(output(ID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"source1 aggregate(groupBy(City),",
+				"     Quantity = count(Quantity)) ~> aggregate2",
+				"aggregate2 keyGenerate(output(ID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey2",
+				"surrogateKey1, surrogateKey2 lookup(surrogateKey1@ID == surrogateKey2@ID,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1",
+				"lookup1 select(mapColumn(",
+				"          BranchID = surrogateKey1@ID,",
+				"          Branch,",
+				"          City",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          BranchID,",
+				"          Branch,",
+				"          City",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
