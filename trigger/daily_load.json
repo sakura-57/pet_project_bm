@@ -1,0 +1,25 @@
+{
+	"name": "daily_load",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "FromBlobToSqlDb",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 6,
+				"startTime": "2023-01-04T00:46:00Z",
+				"endTime": "2023-01-06T00:46:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
