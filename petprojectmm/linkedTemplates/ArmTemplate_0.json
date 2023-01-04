@@ -832,7 +832,25 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          {Invoice ID},",
+						"          CityID = BranchID,",
+						"          CustomerTypeID,",
+						"          GenderID,",
+						"          ProductLineID,",
+						"          {Unit price},",
+						"          Quantity,",
+						"          {Tax 5%},",
+						"          Total,",
+						"          Date,",
+						"          Time,",
+						"          PaymentTypeID,",
+						"          cogs,",
+						"          {gross margin percentage},",
+						"          {gross income},",
+						"          Rating",
+						"     )) ~> sink1"
 					]
 				}
 			},
