@@ -1105,7 +1105,7 @@
 						"     errorHandlingOption: 'stopOnFirstError',",
 						"     mapColumn(",
 						"          {Invoice ID},",
-						"          CityID = BranchID,",
+						"          BranchID,",
 						"          CustomerTypeID,",
 						"          GenderID,",
 						"          ProductLineID,",
